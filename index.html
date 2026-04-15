@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EcoLog — Soroban DApp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-left">
+      <div class="logo-mark">
+        <svg viewBox="0 0 18 18" fill="none">
+          <path d="M9 2L2 6L9 10L16 6L9 2Z" fill="white"/>
+          <path d="M2 12L9 16L16 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="app-title">EcoLog DApp</div>
+        <div class="app-subtitle">Decentralized Recycling Tracker</div>
+      </div>
+    </div>
+    <div id="wallet-section">
+      <button class="btn-connect" id="btn-connect" onclick="connectWallet()">Connect Wallet</button>
+      <div class="wallet-badge hidden" id="wallet-badge">
+        <div class="wallet-dot"></div>
+        <span class="wallet-text" id="wallet-address">-</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="contract-bar">
+    <span class="contract-label">Contract</span>
+    <span class="contract-id" id="display-contract-id">CONTRACT_ID_BELUM_DISET</span>
+    <span class="network-pill">Testnet</span>
+  </div>
+
+  <div id="alert-banner" class="alert-banner hidden"></div>
+
+  <div class="main">
+
+    <div class="left-panel">
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-label">Total Log</div>
+          <div class="stat-value" id="stat-total">—</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Txns</div>
+          <div class="stat-value" id="stat-txns">0</div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <div class="card-header">
+          <div class="card-header-title">Catat Aktivitas Daur Ulang</div>
+          <div class="fn-badge">create_note()</div>
+        </div>
+        <div class="card-body">
+          <div class="field-group">
+            <label class="field-label">Jenis Sampah</label>
+            <input type="text" id="input-title" placeholder="Contoh: Botol Plastik, Kardus..." />
+          </div>
+          <div class="field-group">
+            <label class="field-label">Berat & Keterangan</label>
+            <textarea id="input-content" rows="4" placeholder="Contoh: 2 Kg, disetor ke bank sampah..."></textarea>
+          </div>
+          <button class="btn-primary" id="btn-create" onclick="createNote()">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+              <path d="M6.5 2v9M2 6.5h9" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            Simpan ke Blockchain
+          </button>
+        </div>
+      </div>
+
+      <div class="panel-card" style="margin-top:14px;">
+        <div class="card-header">
+          <div class="card-header-title">Hapus Catatan</div>
+          <div class="fn-badge">delete_note()</div>
+        </div>
+        <div class="card-body">
+          <div class="field-group">
+            <label class="field-label">Log ID</label>
+            <div class="input-with-btn">
+              <input type="text" id="input-delete-id" placeholder="Masukkan ID catatan..." />
+              <button class="btn-sm-delete" onclick="deleteNoteById()">Hapus</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="panel-toolbar">
+        <div class="panel-title">
+          Riwayat Daur Ulang
+          <span class="fn-tag">get_notes()</span>
+        </div>
+        <button class="btn-refresh" id="btn-refresh" onclick="loadNotes()">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M10 6A4 4 0 1 1 6 2c1.1 0 2.1.45 2.83 1.17L10 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M10 2v2.5H7.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+          Refresh Data
+        </button>
+      </div>
+      <div class="notes-grid" id="notes-grid">
+        <div class="empty-state">
+          <div class="empty-icon">♻️</div>
+          Connect wallet dulu, lalu klik Refresh Data untuk memuat riwayat dari blockchain.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden">
+    <div class="toast-dot" id="toast-dot"></div>
+    <span id="toast-msg"></span>
+  </div>
+
+  <script src="https://albedo.link/albedo.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/stellar-sdk/11.3.0/stellar-sdk.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
