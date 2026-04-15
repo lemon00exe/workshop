@@ -18,12 +18,12 @@ EcoLog is a modification of a basic note-taking app, transformed into an environ
 | Field | Value |
 |---|---|
 | Network | Stellar Testnet |
-| Contract ID | `[MASUKKAN CONTRACT ID LO DI SINI]` |
+| Contract Address | `CA5GGKSQTJW3WUS3A3MT6YW6SKKTAEXAE3MVVFJJAPUFQ2MEBGD7WZRV` |
 | Language | Rust (Soroban SDK) |
 
 ## Application Screenshot
 
-![App Screenshot](LINK_GAMBAR_SCREENSHOT_LO_NANTI_DISINI)
+<img width="1919" height="921" alt="app" src="https://github.com/user-attachments/assets/829e67a5-55cb-44f8-87c4-c5ccd45b5142" />
 
 ## Tech Stack
 
